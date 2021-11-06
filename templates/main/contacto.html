@@ -1,0 +1,74 @@
+{% extends "index.html" %} {% block content %}
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="wrapper style2">
+        <div class="inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 col-12-medium">
+                        <div id="sidebar">
+
+                            <!-- Sidebar -->
+
+                            <section>
+                                <header class="major">
+                                    <h2>Registro</h2>
+                                </header>
+                                <p>Quieres empezar a publicar?, entonces haz click en el siguiente boton para registrarte y empezar a postear!</p>
+                                <footer>
+                                    <a href="{{ url_for('registro') }}" class="button icon solid fa-info-circle">Registrate
+												aqui</a>
+                                </footer>
+                            </section>
+
+                            <section>
+                                <header class="major">
+                                    <h2>Iniciar Sesion</h2>
+                                </header>
+                                <p>Si ya cuentas con un usuario, entonces haz click en el siguiente boton para iniciar sesion y seguir posteando!</p>
+                                <footer>
+                                    <a href="{{ url_for('login') }}" class="button icon solid fa-arrow-circle-right">Iniciar
+												Sesion</a>
+                                </footer>
+                            </section>
+
+                        </div>
+                    </div>
+                    <div class="col-8 col-12-medium imp-medium">
+                        <div id="content">
+
+                            <!-- Content -->
+
+                            <article>
+                                <header class="major">
+                                    <h2>Ubicación</h2>
+                                    <p>Guatemala, UBlog<br /> 14 Avenida, Cdad. de Guatemala 01012<br /> GT
+                                    </p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d113295.55093290794!2d-90.50077412895408!3d14.603206726436197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sgt!4v1617778543364!5m2!1ses!2sgt" width="600" height="450" style="border:0;"
+                                        allowfullscreen="" loading="lazy"></iframe>
+                                </header>
+
+                                <header class="major">
+                                    <h2>Como contactarnos</h2>
+                                    <dt><b>Telefonos</b></dt>
+                                    <dd>+502 1234-5678</dd>
+                                    <dd>+502 9847-6521</dd>
+                                    </br>
+                                    <dt><b>Correo Electronico</b></dt>
+                                    <dd>UBlog@Ublog.org</dd>
+
+                                </header>
+
+
+                            </article>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

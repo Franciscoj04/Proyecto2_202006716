@@ -1,0 +1,72 @@
+{% extends "paciente/pacientes.html" %} {% block content %}
+<div class="col-sm" role="dialog" aria-modal="true">
+    <form name="datos" action="/updatepaciente2" method="POST">
+        <section>
+            <table style=" line-height: 8px; background-color:#d0f8be;border:1px dotted black;padding:10; ">
+
+                <tr></tr>
+
+                <th>Id paciente</th>
+
+                <td><input type="text" name="idpaciente" id="txtId" value="{{idusuario}}" readonly />
+                </td>
+                </tr>
+
+                <tr>
+
+                    <th>Nombre</th>
+
+                    <td><input type="text" name="nombre" id="txtNombre" value="{{nombre}}" />
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <th>Apelidos</th>
+
+                    <td><input type="text" name="apellido" id="txtApellido" value="{{apellido}}" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <th>Fecha</th>
+
+                    <td><input type="text" name="fecha" id="txtFecha" value="{{fecha}}" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <th>Sexo</th>
+
+                    <td><input type="text" name="sexo" id="txtSexo" value="{{sexo}}" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <th>Usuario</th>
+
+                    <td><input type="text" name="usuario" id="txtUsuario" value="{{usuario}}" readonly />
+                    </td>
+                </tr>
+                <tr>
+
+                    <th>Password</th>
+
+                    <td><input type="text" name="password" id="txtPassword" value="{{password}}" />
+                    </td>
+                </tr>
+            </table>
+
+        </section>
+        <menu>
+            <button id="btcancel" name="btcancel" type="reset" class="btn btn-success">Retornar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+        </menu>
+    </form>
+    <script>
+        document.getElementById("btcancel").onclick = function() {
+            location.href = "{{ url_for('accesousuario') }}";
+        };
+    </script>
+</div>
+{% endblock %}

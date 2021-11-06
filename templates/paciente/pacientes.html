@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>UBlog | Modulo Usuarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="static/images/icons/favicon.ico" />
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/css/util.css">
+        <link rel="stylesheet" type="text/css" href="static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="static/css/admin.css">
+        <!--===============================================================================================-->
+    
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+        <script src="static/js/jquery-3.6.0.min.js"></script>
+        <script src="static/js/util.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/bootstrap.bundle.min.js"></script>
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" type="text/css" href="static/css/bootstrap-reboot.min.css">
+    
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+    
+        <!--===============================================================================================-->
+    
+        <script src="static/js/popper.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+    
+        <!-- End Bootstrap -->
+        <link rel="stylesheet" href="static/css/tabla.css">
+    
+        <script src="static/js/tabs.js"></script>
+    </head>
+
+<body>
+
+    <div id="page-wrapper">
+
+        <!-- Header Wrapper -->
+        <div id="header-wrapper">
+            <div class="container">
+
+                <!-- Header -->
+                <header id="header">
+                    <div class="inner">
+
+                        <!-- Logo -->
+                        <h1><a href="{{ url_for('home') }}" id="logo"><img src="static/images/UBLOG1.png"
+                                    alt="" /></a>
+                        </h1>
+
+                        <!-- boton cerrar sesion -->
+                        <div style="float: right;">
+                            <a href="{{ url_for('login') }}"><button class="login100-form-btn"
+                                    style="height:50px; width:200px; position: absolute;top: 0%;">Cerrar
+                                    Sesion</button></a>
+                        </div>
+                    </div>
+                </header>
+
+            </div>
+        </div>
+        <div class="limiter">
+            <nav class="navbar navbar-dark bg-primary">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url_for('home') }}">Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                    style="font-size: large; background-color: #f4511e;" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">Menu Usuarios</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                                    style="font-size: large; color: rgb(255, 254, 254); background-color: #ca775e;">
+                                    <a class="dropdown-item" href="{{ url_for('pacientevercita') }}"
+                                        style="font-size: large;">Agregar Publicacion</a>
+                                    <a class="dropdown-item" href="{{ url_for('actualizarusuario') }}"
+                                        style="font-size: large;">Actualizar datos</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </nav>
+        </div>
+
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+
+    </div>
+
+    <!-- Carga Pacientes -->
+
+    <!--===============================================================================================-->
+    <script src="static/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="static/vendor/tilt/tilt.jquery.min.js"></script>
+    <!--===============================================================================================-->
+
+
+</body>
+
+</html>

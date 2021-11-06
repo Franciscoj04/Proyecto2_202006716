@@ -1,0 +1,231 @@
+{% extends "admin/admin.html" %} {% block content %}
+
+<!-- Carga Medicos -->
+<div class="secciones">
+
+    <article id="tab1">
+        <h1>Carga Publicaciones</h1>
+        </br>
+
+        <form enctype="multipart/form-data" action="/uploadmedico" method="post">
+
+            <p>
+                Adjuntar Archivo: <input type="file" id="archivo" name="archivo" multiple="" class="btn btn-primary">
+                <output id="lista"></output>
+                <input type="submit" value="Upload" class="btn btn-secondary" />
+            </p>
+            <p></p>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+
+        </br>
+
+        <!-- Tabla datos cargados pacientes -->
+
+        <div id="main-container">
+            <h3>Listado de Publicaciones</h2>
+                <div class="row">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Busque informacion</span>
+                        </div>
+                        <textarea id="buscarinfo" class="form-control" aria-label="Busque informacion"></textarea>
+                        <button class="btn btn-success" class="btn btn-info" onclick="generatePDF(event);">PDF</button>
+                    </div>
+                    <div style="height:60%;overflow:auto;">
+                        {{htmlMedicos | safe}}
+                    </div>
+                </div>
+
+                <div class="col-sm" role="dialog" aria-modal="true">
+                    <dialog id="DialogoData"
+                        style="width:30%; position: fixed; left: 20%; background-color:#d0f8be;border:1px dotted black;">
+                        <form action="/updatemedico" method="POST">
+                            <section>
+                                <table
+                                    style=" line-height: 8px; background-color:#d0f8be;border:1px dotted black;padding:10; ">
+
+                                    <tr></tr>
+
+                                    <th>Id</th>
+
+                                    <td><input type="text" name="id" id="txtId" value="" />
+                                    </td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>Nombre</th>
+
+                                        <td><input type="text" name="nombre" id="txtNombre" value="" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>Apelidos</th>
+
+                                        <td><input type="text" name="apellido" id="txtApellido" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <th>Fecha</th>
+
+                                        <td><input type="text" name="fecha" id="txtFecha" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <th>Sexo</th>
+
+                                        <td><input type="text" name="sexo" id="txtSexo" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <th>Usuario</th>
+
+                                        <td><input type="text" name="usuario" id="txtUsuario" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <th>Password</th>
+
+                                        <td><input type="text" name="password" id="txtPassword" value="" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>Especialidad</th>
+
+                                        <td><input type="text" name="especialidad" id="txtEspecialidad" value="" />
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </section>
+                            <menu>
+                                <button id="cancel" type="reset" class="btn btn-dark"
+                                    onclick="closeDialog(event);">Cancel</button>
+                                <button type="submit" class="btn btn-success">Confirmar</button>
+                            </menu>
+                        </form>
+                    </dialog>
+                    <script>
+                        var dialogEdit = document.getElementById('DialogoData');
+                        var cancelButton = document.getElementById('cancel');
+
+                        function editRow(e) {
+                            var rows = document.getElementById("tableMedicos").rows;
+                            for (var i = 0, ceiling = rows.length; i < ceiling; i++) {
+                                rows[i].onclick = function () {
+                                    txtId.value = this.cells[0].innerHTML
+                                    txtNombre.value = this.cells[1].innerHTML
+                                    txtApellido.value = this.cells[2].innerHTML
+                                    txtFecha.value = this.cells[3].innerHTML
+                                    txtSexo.value = this.cells[4].innerHTML
+                                    txtUsuario.value = this.cells[5].innerHTML
+                                    txtPassword.value = this.cells[6].innerHTML
+                                    txtEspecialidad.value = this.cells[7].innerHTML
+                                    /*  alert(this.cells[0].innerHTML); */
+                                    dialogEdit.showModal();
+                                    e.stopPropagation();
+                                }
+                            }
+
+                        }
+
+                        function deleteRow(e) {
+
+                            var rows = document.getElementById("tableMedicos").rows;
+                            var idMedico = "-1"
+                            for (var i = 0, ceiling = rows.length; i < ceiling; i++) {
+                                rows[i].onclick = function () {
+                                    idMedico = this.cells[0].innerHTML
+                                    /* alert("hola delete: " + idPaciente); */
+                                    var xhttp = new XMLHttpRequest();
+                                    xhttp.open("POST", "/deletemedico/" + idMedico, true);
+                                    xhttp.send('');
+                                    xhttp.onreadystatechange = function () {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            let url = xhttp.responseURL
+                                            window.location.replace(url);
+
+                                        }
+                                    };
+
+                                    e.stopPropagation();
+                                }
+                            }
+                        }
+
+                        function closeDialog(e) {
+                            dialogEdit.close();
+                            e.stopPropagation();
+                        }
+                        function generatePDF(e) {
+                            var doc = new jsPDF('p', 'pt', 'letter');
+                            var htmlstring = '';
+                            var tempVarToCheckPageHeight = 0;
+                            var pageHeight = 0;
+                            pageHeight = doc.internal.pageSize.height;
+                            specialElementHandlers = {
+                                // element with id of "bypass" - jQuery style selector  
+                                '#bypassme': function (element, renderer) {
+                                    // true = "handled elsewhere, bypass text extraction"  
+                                    return true
+                                }
+                            };
+                            margins = {
+                                top: 150,
+                                bottom: 60,
+                                left: 40,
+                                right: 40,
+                                width: 600
+                            };
+                            var y = 20;
+                            doc.setLineWidth(2);
+                            doc.text(200, y = y + 30, "LISTADO DE PUBLICACIONES");
+                            doc.autoTable({
+                                html: '#tableMedicos',
+                                startY: 70,
+                                theme: 'striped',
+                                styles: {
+                                    minCellHeight: 20, fontSize: 8
+                                }
+                            })
+                            doc.save('ListadoPublicaciones.pdf');
+                        }
+
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $("#buscarinfo").on("keyup", function () {
+                                var value = $(this).val().toLowerCase();
+                                $("#tableBody tr").filter(function () {
+                                    $(this).toggle($(this).text()
+                                        .toLowerCase().indexOf(value) > -1)
+                                });
+                            });
+                        });
+                    </script>
+
+                </div>
+                <div class="col-sm"></div>
+
+        </div>
+        <br>
+       
+    </article>
+
+    {% endblock %}

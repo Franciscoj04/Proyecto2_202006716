@@ -1,6 +1,5 @@
 {% extends "admin/admin.html" %} {% block content %}
 
-<!-- Carga Medicos -->
 <div class="secciones">
 
     <article id="tab1">
@@ -53,10 +52,10 @@
 
                                     <tr></tr>
 
-                                    <th>Id</th>
+                                        <th>Id</th>
 
-                                    <td><input type="text" name="id" id="txtId" value="" />
-                                    </td>
+                                        <td><input type="text" name="id" id="txtId" value="" />
+                                        </td>
                                     </tr>
 
                                     <tr>
@@ -83,7 +82,7 @@
                                     </tr>
                                     <tr>
 
-                                        <th>Apelidos</th>
+                                        <th>Correo</th>
 
                                         <td><input type="text" name="apellido" id="txtApellido" value="" />
                                         </td>
@@ -117,10 +116,10 @@
                                 rows[i].onclick = function () {
                                     txtId.value = this.cells[0].innerHTML
                                     txtNombre.value = this.cells[1].innerHTML
-                                    txtSexo.value = this.cells[4].innerHTML
-                                    txtUsuario.value = this.cells[5].innerHTML
-                                    txtApellido.value = this.cells[2].innerHTML
-                                    txtPassword.value = this.cells[6].innerHTML
+                                    txtSexo.value = this.cells[2].innerHTML
+                                    txtUsuario.value = this.cells[3].innerHTML
+                                    txtApellido.value = this.cells[4].innerHTML
+                                    txtPassword.value = this.cells[5].innerHTML
                                     /*  alert(this.cells[0].innerHTML); */
                                     dialogEdit.showModal();
                                     e.stopPropagation();

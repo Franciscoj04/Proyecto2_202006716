@@ -70,21 +70,6 @@
                                         <td><input type="text" name="nombre" id="txtNombre" value="" />
                                         </td>
                                     </tr>
-
-                                    <tr>
-
-                                        <th>Apelidos</th>
-
-                                        <td><input type="text" name="apellido" id="txtApellido" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <th>Fecha</th>
-
-                                        <td><input type="text" name="fecha" id="txtFecha" value="" />
-                                        </td>
-                                    </tr>
                                     <tr>
 
                                         <th>Sexo</th>
@@ -99,6 +84,15 @@
                                         <td><input type="text" name="usuario" id="txtUsuario" value="" />
                                         </td>
                                     </tr>
+
+                                    <tr>
+
+                                        <th>Correo</th>
+
+                                        <td><input type="text" name="apellido" id="txtApellido" value="" />
+                                        </td>
+                                    </tr>
+                                    
                                     <tr>
 
                                         <th>Password</th>
@@ -127,10 +121,9 @@
                                 rows[i].onclick = function () {
                                     txtId.value = this.cells[0].innerHTML
                                     txtNombre.value = this.cells[1].innerHTML
-                                    txtApellido.value = this.cells[2].innerHTML
-                                    txtFecha.value = this.cells[3].innerHTML
                                     txtSexo.value = this.cells[4].innerHTML
                                     txtUsuario.value = this.cells[5].innerHTML
+                                    txtApellido.value = this.cells[2].innerHTML
                                     txtPassword.value = this.cells[6].innerHTML
                                     /*  alert(this.cells[0].innerHTML); */
                                     dialogEdit.showModal();

@@ -99,28 +99,6 @@
                         </span>
                     </div>
 
-                    <!-- Apellido -->
-                    <div class="wrap-input100 validate-input" data-validate="Ingrese un apellido">
-
-                        <input class="input100" type="txtApellido" id="apellido" name="apellido" placeholder="Ingresar Apellido" required>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-
-                        </span>
-                    </div>
-
-
-                    <!-- Fecha Nacimiento -->
-                    <div class="wrap-input100 validate-input" data-validate="Fecha de Nacimiento invalida">
-
-                        <input class="input100" type="date" name="fecha" id="fecha" placeholder="Fecha de Nacimiento" required>
-
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-
-						</span>
-                    </div>
-
                     <!-- Sexo -->
                     <div class="wrap-input100 validate-input" data-validate="Selecciones una opcion">
                         Genero:
@@ -136,10 +114,19 @@
 
                     </div>
 
-                    <!-- Nombre de Usuario -->
-                    <div class="wrap-input100 validate-input" data-validate="Ingrese un usuario valido">
+                    
+                    <!-- Usuario -->
+                    <div class="wrap-input100 validate-input" data-validate="Usuario">
+                        <input class="input100" type="txtUsuario" id="usuario" name="usuario" placeholder="Usuario" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100"></span>
 
-                        <input class="input100" type="txtUsuario" id="usuario" name="usuario" placeholder="Ingrese un Usuario" required>
+                        </span>
+                    </div>
+
+                    <!-- correo -->
+                    <div class="wrap-input100 validate-input" data-validate="Correo">
+                        <input class="input100" type="txtApellido" id="apellido" name="apellido" placeholder="Correo" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100"></span>
 
@@ -183,19 +170,17 @@
     <script>
         function collectDataRegistro() {
             var nombre = document.querySelector('#Nombre').value
-            var apellido = document.querySelector('#Apellido').value
-            var fecha = document.querySelector('#date').value
             var hombre = document.querySelector('#sexH').value
             var mujer = document.querySelector('#sexM').value
             var usuario = document.querySelector('#user').value
+            var apellido = document.querySelector('#Apellido').value
             var password = document.querySelector('#password').value
 
             var data = {
                 'Nombre': nombre,
-                'Apellido': apellido,
-                'Fecha de Nacimiento': fecha,
                 'Sexo': hombre,
                 'Usuario': usuario,
+                'Apellido': apellido,
                 'Contraseña': password,
             }
             console.log(data)

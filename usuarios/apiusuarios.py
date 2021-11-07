@@ -43,17 +43,16 @@ def insertpaciente():
     print("++++++ Insert paciente")
     if request.method == 'POST':
         nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        fecha = request.form['fecha']
         sexo = request.form['sexo']
         usuario = request.form['usuario']
+        apellido = request.form['apellido']
         password = request.form['password']
         result = crudp.getvalidusername(usuario)
         if result:
             info = "El usuario existe, debe ingresar otro"
             return redirect(url_for('insertpaciente',info=info))
         else:
-            crudp.insertPaciente(nombre, apellido, fecha, sexo, usuario, password)
+            crudp.insertPaciente(nombre, sexo, usuario, apellido, password)
             info ="Usuario creado, intente ingreasar al sistema"
     return redirect(url_for('login',info=info))
 
@@ -63,13 +62,12 @@ def updatePaciente():
     if request.method == 'POST':
         idpaciente = request.form['idpaciente']
         nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        fecha = request.form['fecha']
         sexo = request.form['sexo']
         usuario = request.form['usuario']
+        apellido = request.form['apellido']
         password = request.form['password']
    
-        crudp.setUpdateData(int(idpaciente), nombre, apellido, fecha, sexo, usuario, password)
+        crudp.setUpdateData(int(idpaciente), nombre, sexo, usuario, apellido, password)
     
     html=crudp.listToHTML()
     
@@ -90,24 +88,22 @@ def getallpaciente():
 def getpaciente(idusuario):
     ids = None
     nombre = None
-    apellido = None
-    fecha = None
     sexo = None
     usuario = None
+    apellido = None
     password = None
-    ids,nombre,apellido,fecha,sexo,usuario,password =crudp.getpaciente(idusuario)
-    return ids,nombre,apellido,fecha,sexo,usuario,password
-    #return redirect(url_for('accesousuario', idusuario=idusuario,nombre=nombre,apellido=apellido,fecha=fecha, sexo=sexo, usuario=usuario, password=password))     
+    ids,nombre,sexo,usuario,apellido,password =crudp.getpaciente(idusuario)
+    return ids,nombre,sexo,usuario,apellido,password
+    #return redirect(url_for('accesousuario', idusuario=idusuario,nombre=nombre, sexo=sexo, usuario=usuario,apellido=apellido, password=password))     
 
 def updatePaciente2():
     idpaciente = request.form['idpaciente']
     nombre = request.form['nombre']
-    apellido = request.form['apellido']
-    fecha = request.form['fecha']
     sexo = request.form['sexo']
     usuario = request.form['usuario']
+    apellido = request.form['apellido']
     password = request.form['password']
 
-    crudp.setUpdateData(int(idpaciente), nombre, apellido, fecha, sexo, usuario, password)
+    crudp.setUpdateData(int(idpaciente), nombre, sexo, usuario, apellido, password)
     
     return redirect(url_for('accesousuario'))    

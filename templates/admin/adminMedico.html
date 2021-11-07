@@ -69,20 +69,6 @@
 
                                     <tr>
 
-                                        <th>Apelidos</th>
-
-                                        <td><input type="text" name="apellido" id="txtApellido" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <th>Fecha</th>
-
-                                        <td><input type="text" name="fecha" id="txtFecha" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-
                                         <th>Sexo</th>
 
                                         <td><input type="text" name="sexo" id="txtSexo" value="" />
@@ -97,19 +83,19 @@
                                     </tr>
                                     <tr>
 
+                                        <th>Apelidos</th>
+
+                                        <td><input type="text" name="apellido" id="txtApellido" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+
                                         <th>Password</th>
 
                                         <td><input type="text" name="password" id="txtPassword" value="" />
                                         </td>
                                     </tr>
 
-                                    <tr>
-
-                                        <th>Especialidad</th>
-
-                                        <td><input type="text" name="especialidad" id="txtEspecialidad" value="" />
-                                        </td>
-                                    </tr>
 
                                 </table>
 
@@ -131,12 +117,10 @@
                                 rows[i].onclick = function () {
                                     txtId.value = this.cells[0].innerHTML
                                     txtNombre.value = this.cells[1].innerHTML
-                                    txtApellido.value = this.cells[2].innerHTML
-                                    txtFecha.value = this.cells[3].innerHTML
                                     txtSexo.value = this.cells[4].innerHTML
                                     txtUsuario.value = this.cells[5].innerHTML
+                                    txtApellido.value = this.cells[2].innerHTML
                                     txtPassword.value = this.cells[6].innerHTML
-                                    txtEspecialidad.value = this.cells[7].innerHTML
                                     /*  alert(this.cells[0].innerHTML); */
                                     dialogEdit.showModal();
                                     e.stopPropagation();

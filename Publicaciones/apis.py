@@ -44,14 +44,12 @@ def uploaderMedico():
 def updateMedico():
     id = request.form['id']
     nombre = request.form['nombre']
-    apellido = request.form['apellido']
-    fecha = request.form['fecha']
     sexo = request.form['sexo']
     usuario = request.form['usuario']
+    apellido = request.form['apellido']
     password = request.form['password']
-    especialidad =  request.form['especialidad']
 
-    crudm.setUpdateData(id, nombre, apellido, fecha, sexo, usuario, password, especialidad)
+    crudm.setUpdateData(id, nombre, sexo, usuario, apellido, password)
     html=crudm.listToHTML()
     body = '2'
     return redirect(url_for('adminMedico'))
@@ -71,26 +69,22 @@ def getalldoctores():
 def getdoctor(idusuario):
     ids = None
     nombre = None
-    apellido = None
-    fecha = None
     sexo = None
     usuario = None
+    apellido = None
     password = None
-    especialidad = None
-    ids,nombre,apellido,fecha,sexo,usuario,password, especialidad =crudm.getdoctor(idusuario)
-    return ids,nombre,apellido,fecha,sexo,usuario,password, especialidad
-    #return redirect(url_for('accesousuario', idusuario=idusuario,nombre=nombre,apellido=apellido,fecha=fecha, sexo=sexo, usuario=usuario, password=password))     
+    ids,nombre,sexo,usuario,apellido,password =crudm.getdoctor(idusuario)
+    return ids,nombre,sexo,usuario,apellido,password
+    #return redirect(url_for('accesousuario', idusuario=idusuario,nombre=nombre, sexo=sexo, usuario=usuario,apellido=apellido, password=password))     
 
 def updateDoctor2():
     id = request.form['id']
     nombre = request.form['nombre']
-    apellido = request.form['apellido']
-    fecha = request.form['fecha']
     sexo = request.form['sexo']
     usuario = request.form['usuario']
+    apellido = request.form['apellido']
     password = request.form['password']
-    especialidad =  request.form['especialidad']
 
-    crudm.setUpdateData(id, nombre, apellido, fecha, sexo, usuario, password, especialidad)
+    crudm.setUpdateData(id, nombre, sexo, usuario, apellido, password)
     
     return redirect(url_for('accesomedicos'))    

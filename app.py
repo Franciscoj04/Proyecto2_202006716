@@ -24,7 +24,6 @@ def create_app():
     CORS(app)
     return app
 
-
 app = create_app()
 
 
@@ -253,13 +252,12 @@ def cart():
 def actualizarusuario():
     idusuario = dg.idusuario
     nombre = None
-    apellido = None
-    fecha = None
     sexo = None
     usuario = None
+    apellido = None
     password = None
-    idusuario,nombre,apellido,fecha,sexo,usuario,password, = apiPacientes.getpaciente(idusuario)
-    return render_template('paciente/actualizarinfo.html',idusuario=idusuario,nombre=nombre,apellido=apellido,fecha=fecha, sexo=sexo, usuario=usuario, password=password)
+    idusuario,nombre,sexo,usuario,apellido,password, = apiPacientes.getpaciente(idusuario)
+    return render_template('paciente/actualizarinfo.html',idusuario=idusuario,nombre=nombre,sexo=sexo, usuario=usuario,apellido=apellido, password=password)
 
 @app.route("/updatepaciente2", methods=['GET','POST'])
 def updatePaciente2():
@@ -309,65 +307,7 @@ def citapendientes():
     html=apicitas.getcitasporestado(estado)
     doctors = dg.gMedicos
     return render_template('doctores/citapendiente.html',html=html,idusuario=idusuario,idnombre=idnombre, doctors=doctors)
-
-@app.route('/citaupdateestado', methods=['GET','POST'])
-def citaupdateestado():
-    idcita = None
-    idusuario = None
-    nombre = None
-    motivo = None
-    fecha = None
-    hora = None
-    estado = None
-    iddoctor = None
-    if request.method == 'POST':
-        idcita = request.form['txtIdCita']
-        idusuario = request.form['txtIdPaciente']
-        nombre = request.form['txtNombre']
-        motivo = request.form['txtMotivo']
-        fecha = request.form['txtFecha']
-        hora = request.form['txtHora']
-        estado = request.form['cbestado']
-        iddoctor = request.form['cbdoctor']
-        print ("Recibio estado web:",estado)
-    return apicitas.updatecita(idcita,idusuario,nombre,motivo,fecha,hora,estado,iddoctor)
-
-        #Render cita aceptada
-@app.route('/citaaceptada', methods=['GET', 'POST'])
-def citaaceptada():
-    idusuario = dg.idusuario
-    idnombre = dg.idnombre
-    estado = 2
     
-    html=apicitas.getcitasporestado(estado)
-    print ("html aceptas",html)
-    return render_template('enfermera/citaaceptada.html',html=html,idusuario=idusuario,idnombre=idnombre)
-
-        #Render generar factura
-@app.route('/generarfactura', methods=['GET', 'POST'])
-def generarfactura():
-    html=None
-    return render_template('enfermera/facturas.html',html=html)
-    
-
-@app.route("/enfermeraactualizar",  methods=['GET', 'POST'])
-def enfermeraactualizar():
-    idusuario = dg.idusuario
-    nombre = None
-    apellido = None
-    fecha = None
-    sexo = None
-    usuario = None
-    password = None
-    idusuario,nombre,apellido,fecha,sexo,usuario,password = apiEnfermeras.getenfermera(idusuario)
-    return render_template('enfermera/actualizarinfoE.html',idusuario=idusuario,nombre=nombre,apellido=apellido,fecha=fecha, sexo=sexo, usuario=usuario, password=password)
-
-@app.route("/updateenfermera2", methods=['GET','POST'])
-def updateEnfermera2():
-    return apiEnfermeras.updateEnfermera2()    
-
-################### FINALIZA API'S USUARIO DE ENFERMERAS ###############    
-
 #######################################################################
 ### INICIA API'S USUARIO DE DOCTORES
 #######################################################################
@@ -389,29 +329,16 @@ def accesomedicos():
        html = "No hay datos"
     return render_template(template, html=html)
 
-@app.route('/citaspendientes', methods=['GET', 'POST'])
-def citaDocPendiente():
-    html=None
-    return render_template('doctores/citaDocPendiente.html',html=html)
-
-@app.route('/recetas', methods=['GET', 'POST'])
-def recetas():
-    html=None
-    return render_template('doctores/recetas.html',html=html)
-
-
 @app.route("/doctoractualizar",  methods=['GET', 'POST'])
 def actualizardoctor():
     idusuario = dg.idusuario
     nombre = None
-    apellido = None
-    fecha = None
     sexo = None
     usuario = None
+    apellido = None
     password = None
-    especialidad = None
-    idusuario,nombre,apellido,fecha,sexo,usuario,password, especialidad = apiMedicos.getdoctor(idusuario)
-    return render_template('doctores/actualizarinfoD.html',idusuario=idusuario,nombre=nombre,apellido=apellido,fecha=fecha, sexo=sexo, usuario=usuario, password=password,especialidad=especialidad)
+    idusuario,nombre,sexo,usuario,apellido,password = apiMedicos.getdoctor(idusuario)
+    return render_template('doctores/actualizarinfoD.html',idusuario=idusuario,nombre=nombre, sexo=sexo, usuario=usuario,apellido=apellido, password=password)
 
 @app.route("/updatedoctor2", methods=['GET','POST'])
 def updateDoctor2():
